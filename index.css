@@ -60,6 +60,10 @@ button#volunteer:hover {
   margin-top: 8px;
 }
 
+.centered {
+  text-align: center;
+}
+
 .triptych-error {
   color: red;
   font-weight: bold;
@@ -331,7 +335,7 @@ a.triptych-link:visited {
     left: 0;
     background-color: white;
     width: 100%;
-    z-index: 4;
+    z-index: 101;
   }
   .menu-opener.needs-border {
     border-bottom: 1px solid grey;
@@ -500,7 +504,7 @@ a.triptych-link:visited {
   }
 
   .top-container {
-    z-index: 5;
+    z-index: 101;
     top: 0;
     overflow:hidden;
     position: fixed;
@@ -601,7 +605,7 @@ a.triptych-link:visited {
     right: 14px;
     top: 74px;
     width: 600px;
-    z-index: 100;
+    z-index: 101;
     background-color: white;
     height: 280px;
     border: 1px solid lightgrey;

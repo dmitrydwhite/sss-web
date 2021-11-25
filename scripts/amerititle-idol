@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./assets/loader/loader.css">
 </head>
 <body>
+  <script src="https://www.paypal.com/sdk/js?client-id=AUcDFXOazfK3M8rLAft2ZMN_tD_yzs2lue8llYlbdurirN5uvdqgIxOiuCTj7_F91CZol7ORhdMuZSRB"></script>
   <div class="top-container" id="sticky-desktop" aria-roledescription="navigation">
     <div id="donate" class="mobile-nav-assist"></div>
     <div class="menu-opener" id="sticky-mobile">
@@ -39,11 +40,10 @@
         <li class="nav-item"><a href="./index.html#mission">Mission</a></li>
         <!-- <li class="nav-item"><a href="./take-action.html">Take Action</a></li> -->
         <li class="nav-item"><a href="./programs.html">Programs</a></li>
-        <li class="nav-item"><a href="#">Partners</a></li>
+        <!-- <li class="nav-item"><a href="#">Partners</a></li> -->
         <li class="nav-item hold">Volunteer</li>
         <li class="nav-item"><a href="./index.html#contact">Contact</a></li>
-        <li class="nav-item"><a href="./privacy.html">Our Privacy Policy</a></li>
-        <li class="nav-item donate"><a href="#donate">Donate</a></li>
+        <!-- <li class="nav-item donate"><a href="#donate">Donate</a></li> -->
         <li class="nav-item search hold"><i class="material-icons">search</i></li>
       </ul>
     </div>
@@ -71,15 +71,72 @@
 
   <div class="main-content">
     <div class="main-content-spacer"></div>
-    <div class="menu-title">
-      <span id="partners"> &nbsp; </span>
-      Partnerships
+    <div class="menu-title centered">
+      Thank you for your support and generosity!
     </div>
+    <p class="info-para centered">When you donate to Sheltering Silverton you support local neighbors living unsheltered.</p>
+    <p class="info-para centered">Donate now!</p>
+    <div class="input-container centered" style="margin-top: 1rem; margin-bottom: 1rem;">
+      <input type="text" id="campaign-amount-input" style="min-height: 2rem; text-align: center; font-family: 'Quicksand', sans-serif;">
+    </div>
+    <div id="paypal-amerititle-campaign-container" class="centered"></div>
+    <div class="menu-title">Our Mission</div>
+
     <p class="info-para last">
-      We work to ensure that individuals who have experienced homelessness have a real voice in the creation of our programs and services. SSS has established an Advisory Collaborative composed of diverse community representatives including individuals experiencing homelessness, civic leaders, social service agencies and volunteers, physical and mental health providers, faith leaders, community meal organizers, and educators. The urgency and enormity of need in our backyard warrants an “all hands on deck” approach to caring for one another. No single entity has a monopoly on this work. A dedication to sharing knowledge and resources allows us to bolster and learn from a broad coalition.
+      Sheltering Silverton collaborates with neighbors and organizations to provide a framework that
+      supports, develops and provides services to, and advocates for our vulnerable neighbors in order
+      for them to transition toward fuller security, stability, and purpose within our community.
+      Our programs include our warming shelter, resource center, transitional shelter, food &amp; basic
+      needs, showers and sanitation, and the support of our volunteer advocates.
     </p>
-  </div>
+
+    <p>
+      <div id="mni-membership-636746106518111463" class="coc-pad"></div>
+      <script src="https://silvertonchamber.chambermaster.com/Content/Script/Member.js" type="text/javascript"></script>
+      <script type="text/javascript">
+      new MNI.Widgets.Member("mni-membership-636746106518111463",{member:947,styleTemplate:"#@id{text-align:center;position:relative}#@id .mn-widget-member-name{font-weight:700}#@id .mn-widget-member-logo{max-width:100%}"}).create();
+      </script>
+      <script type="text/javascript">
+        // Remove when CoC updates organization name
+        setTimeout(function () {
+          var nameEl = document.getElementsByClassName(' mn-widget-member-name')[0];
+          nameEl && (nameEl.innerHTML = nameEl.innerHTML.replace('Servies', 'Services'));
+        }, 1000);
+      </script>
+    </p>
+
+  <div id="follower"></div>
+</div>
 
   <script src="./scripts/main.js"></script>
+  <script>
+    var inputValue;
+
+    paypal.Buttons({
+      style: { color: 'silver' },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: Number(inputValue).toFixed(2).toString(),
+            },
+            description: 'AMERITITLE_IDOL_PARTNERSHIP',
+          }]
+        })
+      },
+      onApprove: function() {
+        window.location.assign('https://www.shelteringsilverton.org#thanks');
+      },
+    }).render('#paypal-amerititle-campaign-container');
+
+    document.getElementById('campaign-amount-input').addEventListener('change', function(event) {
+      var entered = event.target && event.target.value;
+
+      if (Number.isFinite(Number(entered))) {
+        inputValue = entered;
+        event.target.value = entered;
+      }
+    });
+  </script>
 </body>
 </html>
